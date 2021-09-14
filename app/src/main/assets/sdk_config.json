@@ -1,0 +1,160 @@
+[
+    {
+        "name": "基础包",
+        "doc": "/studiomobile-doc#homelink-base.html",
+        "classFiles": [
+            {
+                "className": "com.aliyun.iot.aep.sdk.init.BaseSDKDelegate"
+            }
+        ],
+        "opt": {
+            "china": {
+                "hosts": {
+                    "test": "api-performance.aliplus.com",
+                    "pre": "api.link.aliyun.com",
+                    "release": "api.link.aliyun.com"
+                },
+                "language": "zh-CN"
+            },
+            "singapore": {
+                "hosts": {
+                    "pre": "api-iot.ap-southeast-1.aliyuncs.com",
+                    "release": "api-iot.ap-southeast-1.aliyuncs.com"
+                },
+                "language": "en-US"
+            },
+            "pre": {
+                "channelHost": "ssl://100.67.80.75:80",
+                "autoSelectChannelHost": "false",
+                "isCheckChannelRootCrt": "false"
+            },
+            "test": {
+                "channelHost": "ssl://10.125.3.189:1883",
+                "autoSelectChannelHost": "false",
+                "isCheckChannelRootCrt": "false"
+            },
+            "release": {
+                "channelHost": "",
+                "autoSelectChannelHost": "false",
+                "isCheckChannelRootCrt": "true"
+            }
+        },
+        "submodules": [
+            {
+                "desc": "基础包胶水代码",
+                "requires": [],
+                "opt": {},
+                "dependency": [],
+                "name": "BaseGlue",
+                "classFiles": [
+                    {
+                        "className": "com.aliyun.iot.aep.sdk.submodule.BaseSDKGlue"
+                    }
+                ]
+            }
+        ],
+        "version": "0.0.2",
+        "desc": "包含开发App和平台建立连接的必要SDK",
+        "identity": "",
+        "sdk_id": 19,
+        "isDefault": true
+    },
+    {
+        "name": "用户及账号",
+        "doc": "/studiomobile-doc#homelink-account.html",
+        "classFiles": [
+            {
+                "className": "com.aliyun.iot.aep.sdk.init.OpenAccountSDKDelegate"
+            }
+        ],
+        "opt": {
+            "sgp_host": "sgp-sdk.openaccount.aliyun.com",
+            "oauth_consumer_key_test": "",
+            "oauth_consumer_key_online": "",
+            "oauth_consumer_secret_test": "",
+            "oauth_consumer_secret_online": "",
+            "supportAliYun": "false",
+            "ui_config": [
+                {
+                    "activity": "com.aliyun.iot.aep.oa.page.OALoginActivity",
+                    "layout": "ali_sdk_openaccount_login2",
+                    "is_select_mobile_country": "false",
+                    "params": {}
+                }
+            ]
+        },
+        "submodules": [
+            {
+                "desc": "bone 插件支持",
+                "requires": [],
+                "opt": {},
+                "dependency": [],
+                "name": "bonePlugin",
+                "classFiles": [
+                    {
+                        "className": "com.aliyun.iot.aep.sdk.submodule.OpenAccountBoneGlue"
+                    }
+                ]
+            }
+        ],
+        "version": "0.0.4.0",
+        "desc": "支持2种账号体系: 内置账号和自有账号体系",
+        "identity": "account",
+        "sdk_id": 20,
+        "isDefault": true
+    },
+    {
+        "name": "设备控制",
+        "doc": "/studiomobile-doc#homelink-ctrldevice.html",
+        "classFiles": [
+            {
+                "className": "com.aliyun.iot.aep.sdk.init.ThingModuleSDKDelegate"
+            }
+        ],
+        "opt": {},
+        "submodules": [
+            {
+                "desc": "Bone 插件支持",
+                "requires": [],
+                "opt": {},
+                "dependency": [],
+                "name": "bonePlugin",
+                "classFiles": [
+                    {
+                        "className": "com.aliyun.iot.aep.sdk.submodule.ThingModuleBoneGlue"
+                    }
+                ]
+            }
+        ],
+        "version": "1.3.1.2",
+        "desc": "提供了设备状态感知及控制的能力",
+        "identity": "",
+        "sdk_id": 22,
+        "isDefault": true
+    },
+    {
+        "name": "添加设备",
+        "doc": "/studiomobile-doc#homelink-adddevice.html",
+        "classFiles": [],
+        "opt": {},
+        "submodules": [
+            {
+                "desc": "Bone 插件支持",
+                "requires": [],
+                "opt": {},
+                "dependency": [],
+                "name": "bonePlugin",
+                "classFiles": [
+                    {
+                        "className": "com.aliyun.iot.aep.sdk.submodule.DeviceCenterGlue"
+                    }
+                ]
+            }
+        ],
+        "version": "1.5.2",
+        "desc": "包含了开发配网界面 (WiFi, 蓝牙, 以太网或蜂窝网）所需的SDK和一套完整示例界面，搭配设备端标准配网方案使用",
+        "identity": "",
+        "sdk_id": 21,
+        "isDefault": true
+    }
+]
