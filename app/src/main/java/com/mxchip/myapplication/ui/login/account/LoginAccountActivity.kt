@@ -35,7 +35,7 @@ class LoginAccountActivity : AppCompatActivity() {
         init(
             "mxChip2021",
             "mxChip20210826n92f4cb86c9",
-            "http://47.102.149.115"
+            "https://panel.zoina.cn:8443"
         )
 
         binding.btnLogin.setOnClickListener {
