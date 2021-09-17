@@ -15,6 +15,9 @@ class LoginAccountActivity : AppCompatActivity() {
 
     private val mVM by viewModels<LoginAccountVM>()
     private lateinit var binding: ActivityLoginAccountBinding
+
+    private val defPk = "a1Ss16Q8p3i"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginAccountBinding.inflate(layoutInflater).apply {
@@ -24,25 +27,33 @@ class LoginAccountActivity : AppCompatActivity() {
         }
 
 
-        //http://192.168.19.187:8001/api/v1/h5panel/url/
-        //  appId = "b0baae0630f444b0811ea3c2eb212170",
-        //                appKey = "32554858"
-
-
-//        # app唯⼀标识
-//        AppKey = "mxChip2021"
-//        AppSerect = "mxChip20210826n92f4cb86c9"
-        init(
-            "mxChip2021",
-            "mxChip20210826n92f4cb86c9",
-            "https://panel.zoina.cn:8443"
-        )
-
         binding.btnLogin.setOnClickListener {
-
+            init(
+                "mxChip2021",
+                "mxChip20210826n92f4cb86c9",
+                "http://47.102.149.115:8443"
+            )
             MxUtil.openDevicePanel(
                 this, "4xks3VvO2kdeNuprKebs000000",
-                "a1DHMl5941F", 1
+                mVM.phoneNumber.value ?: defPk, 1
+            ) { code: Int, msg: String ->
+                LogPet.e("code:$code ,msg:$msg")
+            }
+
+            //固件升级界面
+//            Router.getInstance().toUrl(this, "https://com.aliyun.iot.ilop/page/ota/list")
+
+        }
+
+        binding.btnLoginRelease.setOnClickListener {
+            init(
+                "mxChip2021",
+                "mxChip20210826n92f4cb86c9",
+                "https://panel.zoina.cn:8443"
+            )
+            MxUtil.openDevicePanel(
+                this, "4xks3VvO2kdeNuprKebs000000",
+                mVM.phoneNumber.value ?: defPk, 1
             ) { code: Int, msg: String ->
                 LogPet.e("code:$code ,msg:$msg")
             }

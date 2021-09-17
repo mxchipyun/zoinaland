@@ -10,6 +10,10 @@ class LoginAccountVM : ViewModel() {
     val password = MutableLiveData<String>()
     val loginResult = MutableLiveData<Boolean>()
 
+    init {
+        phoneNumber.value = "a1Ss16Q8p3i"
+    }
+
     private val loginRepository = LoginRepository()
 
 

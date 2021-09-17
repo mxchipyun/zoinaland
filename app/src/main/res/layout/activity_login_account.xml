@@ -26,22 +26,22 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:inputType="phone"
-            android:hint="账号"
+            android:hint="productKey"
             android:text="@={vm.phoneNumber}" />
 
-        <EditText
-            android:id="@+id/et_password"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="账号"
-            android:text="@={vm.password}" />
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="60dp"
-            android:text="登录" />
+            android:text="打开测试环境面板" />
+        <Button
+            android:id="@+id/btn_login_release"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="60dp"
+            android:text="打开正式环境面板" />
 
     </LinearLayout>
 </layout>
