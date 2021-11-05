@@ -17,6 +17,7 @@ import wendu.dsbridge.ui.panel.PageBridgeJsApi
 import wendu.dsbridge.ui.panel.ReqBridgeJsApi
 import wendu.dsbridge.util.LogPet
 import wendu.dsbridge.util.SysUtil
+import wendu.dsbridge.util.ToastPet
 
 class DevicePanelActivity : Activity(), IMxchipPanelView {
 
@@ -26,6 +27,7 @@ class DevicePanelActivity : Activity(), IMxchipPanelView {
     private var iotId: String? = null
     private var productKey: String? = null
     private var url: String? = null
+    private var canDebug: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +35,13 @@ class DevicePanelActivity : Activity(), IMxchipPanelView {
         initImmserionBar()
         webView = findViewById(R.id.web_view_panel)
         progressBar = findViewById(R.id.progress_web)
-        initWebView()
         intent.extras?.let {
             this.iotId = it.getString("iotId")
             this.productKey = it.getString("productKey")
             this.url = it.getString("url")
+            this.canDebug = it.getBoolean("canDebug", false)
         }
+        initWebView()
         if (iotId.isNullOrEmpty() || url.isNullOrEmpty()) {
             LogPet.e("url or iotId can't be null")
             finish()
@@ -65,6 +68,10 @@ class DevicePanelActivity : Activity(), IMxchipPanelView {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun initWebView() {
+        if (canDebug) {
+            ToastPet.showShort("debug mode!")
+            WebView.setWebContentsDebuggingEnabled(true)
+        }
         webView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)

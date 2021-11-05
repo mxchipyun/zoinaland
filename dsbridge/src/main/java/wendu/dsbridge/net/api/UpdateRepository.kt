@@ -18,7 +18,13 @@ import wendu.dsbridge.util.MxUtil
 class UpdateRepository {
 
     companion object {
-        fun navigateToPanel(context: Context, iotId: String, productKey: String, owned: Int) {
+        fun navigateToPanel(
+            context: Context,
+            iotId: String,
+            productKey: String,
+            owned: Int,
+            canDebug: Boolean? = false
+        ) {
             val url = H5LocalCacheUtil.getH5Url(productKey, iotId, owned)
             if (url.isNullOrEmpty()) {
                 LogPet.e("url is null or empty")
@@ -31,6 +37,7 @@ class UpdateRepository {
                 ).apply {
                     putExtra("iotId", iotId)
                     putExtra("url", url)
+                    putExtra("canDebug", canDebug)
                 })
         }
     }

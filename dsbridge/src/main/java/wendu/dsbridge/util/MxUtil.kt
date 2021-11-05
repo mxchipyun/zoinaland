@@ -115,6 +115,7 @@ object MxUtil {
         iotId: String,
         productKey: String,
         owned: Int,//0（表示被分享的设备）；1（表示拥有的设备）
+        canDebug: Boolean? = false,
         callback: ((code: Int, msg: String) -> Unit)? = null//code=0 表示成功
     ) {
         requestNet(errorCallback = {
@@ -129,7 +130,7 @@ object MxUtil {
                     override fun success() {
                         runUI {
                             LogPet.d("openPanel ~~")
-                            UpdateRepository.navigateToPanel(context, iotId, productKey, owned)
+                            UpdateRepository.navigateToPanel(context, iotId, productKey, owned,canDebug)
                             callback?.invoke(0, "open panel success!")
                         }
                     }

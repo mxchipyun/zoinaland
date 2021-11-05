@@ -7,6 +7,7 @@ import com.aliyun.alink.linksdk.channel.mobile.api.IMobileDownstreamListener
 import com.aliyun.alink.linksdk.channel.mobile.api.MobileChannel
 import com.google.gson.Gson
 import wendu.dsbridge.bean.UserBindRes
+import wendu.dsbridge.ext.runDelay
 import wendu.dsbridge.net.api.iot.IoTRep
 import wendu.dsbridge.util.LogPet.Companion.e
 
@@ -71,6 +72,8 @@ class DownloadListenerInf {
         deviceName: String,
         callback: (res: UserBindRes?) -> Unit
     ) {
-        iotRep.userBind(productKey, deviceName, callback)
+        runDelay {
+            iotRep.userBind(productKey, deviceName, callback)
+        }
     }
 }
