@@ -10,6 +10,7 @@ import com.aliyun.iot.aep.sdk.apiclient.callback.IoTResponse
 import com.aliyun.iot.aep.sdk.apiclient.emuns.Scheme
 import com.aliyun.iot.aep.sdk.apiclient.request.IoTRequest
 import com.aliyun.iot.aep.sdk.apiclient.request.IoTRequestBuilder
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import wendu.dsbridge.CompletionHandler
@@ -91,8 +92,15 @@ class ReqBridgeJsApi {
                         val jsonData = JSONObject()
                         jsonData.put("code", code)
                         if (response.data != null && !TextUtils.isEmpty(response.data.toString())) {
-                            val data = JSONObject(response.data.toString())
-                            jsonData.put("data", data)
+                            if (response.data is JSONArray) {
+                                val arrayData = JSONArray(response.data.toString())
+                                jsonData.put("data", arrayData)
+                            } else if (response.data is String) {
+                                jsonData.put("data", response.data.toString())
+                            } else {
+                                val data = JSONObject(response.data.toString())
+                                jsonData.put("data", data)
+                            }
                         }
                         Log.d(TAG, "fetch--complete->$jsonData")
                         handler.complete(jsonData)
@@ -119,13 +127,13 @@ class ReqBridgeJsApi {
             LogPet.d("GET")
             onGetRequest(paramsObj.innerMap, url, handler)
         } else if (method == "POST") {
-            LogPet. d("POST")
+            LogPet.d("POST")
             onPOSTRequest(paramsObj.innerMap, url, handler)
         } else if (method == "PUT") {
-            LogPet. d("PUT")
+            LogPet.d("PUT")
             onPUTRequest(paramsObj.innerMap, url, handler)
         } else if (method == "DELETE") {
-            LogPet. d("DELETE")
+            LogPet.d("DELETE")
             onDELETERequest(paramsObj.innerMap, url, handler)
         }
     }
