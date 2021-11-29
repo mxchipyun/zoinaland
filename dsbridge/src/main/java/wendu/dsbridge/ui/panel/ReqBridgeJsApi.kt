@@ -92,14 +92,24 @@ class ReqBridgeJsApi {
                         val jsonData = JSONObject()
                         jsonData.put("code", code)
                         if (response.data != null && !TextUtils.isEmpty(response.data.toString())) {
-                            if (response.data is JSONArray) {
-                                val arrayData = JSONArray(response.data.toString())
-                                jsonData.put("data", arrayData)
-                            } else if (response.data is String) {
-                                jsonData.put("data", response.data.toString())
-                            } else {
-                                val data = JSONObject(response.data.toString())
-                                jsonData.put("data", data)
+                            when (response.data) {
+                                is JSONArray -> {
+                                    val arrayData = JSONArray(response.data.toString())
+                                    jsonData.put("data", arrayData)
+                                }
+                                is JSONObject -> {
+                                    val data = JSONObject(response.data.toString())
+                                    jsonData.put("data", data)
+                                }
+                                is String -> {
+                                    jsonData.put("data", response.data.toString())
+                                }
+                                is Int -> {
+                                    jsonData.put("data", (response.data as Int))
+                                }
+                                else -> {
+                                    jsonData.put("data", response.data.toString())
+                                }
                             }
                         }
                         Log.d(TAG, "fetch--complete->$jsonData")
