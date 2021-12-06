@@ -178,7 +178,7 @@ class DevicePanelActivity : Activity(), IMxchipPanelView {
     }
 
     override fun onDestroy() {
-        webView.clearCache(true)
+//        webView.clearCache(true)
         webView.clearHistory()
         webView.clearFormData()
         super.onDestroy()
